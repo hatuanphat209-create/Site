@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VNSUB.com - Hệ Thống Tương Tác Acc Việt</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background-color: #f8fafc; }
+        .gradient-text { background: linear-gradient(90deg, #ef4444, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <nav class="bg-white shadow-md p-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold gradient-text">VNSUB</h1>
+        <div class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full font-semibold">
+            <i class="fa-solid fa-coins mr-1"></i> <span id="user-xu">117,300</span> Xu
+        </div>
+    </nav>
+
+    <main class="flex-grow p-4 max-w-md mx-auto w-full">
+        <div class="bg-white rounded-2xl shadow-xl p-6 mt-4 border border-gray-100">
+            <div class="text-center mb-6">
+                <h2 class="text-xl font-bold text-gray-800">NHIỆM VỤ HÀNG NGÀY</h2>
+                <p class="text-sm text-gray-500 italic">Hệ thống AI quét chống hủy follow đang hoạt động</p>
+            </div>
+
+            <div class="bg-orange-50 border-l-4 border-orange-500 p-4 mb-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p class="font-bold text-orange-800">Follow TikTok (Acc Việt)</p>
+                        <p class="text-xs text-orange-600 italic">+1.000 xu mỗi lượt follow</p>
+                    </div>
+                    <div class="text-right">
+                        <span id="job-progress" class="text-2xl font-black text-orange-700">0</span><span class="text-orange-700 font-bold">/10</span>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="openTikTokJob()" class="w-full bg-black text-white py-4 rounded-xl font-bold mb-4 hover:opacity-90 transition flex items-center justify-center gap-2">
+                <i class="fa-brands fa-tiktok"></i> MỞ TIKTOK NHẬN JOB
+            </button>
+
+            <button id="claim-btn" onclick="claimReward()" disabled class="w-full bg-gray-300 text-gray-500 py-4 rounded-xl font-bold transition">
+                NHẬN 10,000 XU THƯỞNG
+            </button>
+        </div>
+
+        <div class="mt-6 text-center text-gray-400 text-xs">
+            <p>© 2026 VNSUB Project - Powered by GitHub</p>
+        </div>
+    </main>
+
+    <script>
+        let progress = 0;
+        let totalXu = 117300;
+
+        function openTikTokJob() {
+            // Giả lập mở một danh sách link TikToker
+            const targets = ["vtv.tin.tuc", "vnexpress.official", "schannel.vn"];
+            const randomUser = targets[Math.floor(Math.random() * targets.length)];
+            
+            window.open(`https://www.tiktok.com/@${randomUser}`, "_blank");
+
+            // Tăng tiến độ
+            if (progress < 10) {
+                progress++;
+                document.getElementById('job-progress').innerText = progress;
+                
+                if (progress === 10) {
+                    const btn = document.getElementById('claim-btn');
+                    btn.classList.remove('bg-gray-300', 'text-gray-500');
+                    btn.classList.add('bg-green-500', 'text-white');
+                    btn.disabled = false;
+                }
+            }
+        }
+
+        function claimReward() {
+            totalXu += 10000;
+            document.getElementById('user-xu').innerText = totalXu.toLocaleString();
+            alert("Chúc mừng! AI đã xác nhận 10 follow sạch. Bạn nhận được 10.000 xu.");
+            
+            // Reset job
+            progress = 0;
+            document.getElementById('job-progress').innerText = progress;
+            const btn = document.getElementById('claim-btn');
+            btn.classList.add('bg-gray-300', 'text-gray-500');
+            btn.classList.remove('bg-green-500', 'text-white');
+            btn.disabled = true;
+        }
+    </script>
+</body>
+</html>
